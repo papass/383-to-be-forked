@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nodejs:
+    build: ./nodejs
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nodejs:/app
+    working_dir: /app
+    command: node app.js
+
+  python:
+    build: ./python
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./python:/app
+    working_dir: /app
+    command: python app.py
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/usr/share/nginx/html
+    working_dir: /usr/share/nginx/html
+    command: nginx -g 'daemon off;'
